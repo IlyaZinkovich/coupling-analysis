@@ -2,11 +2,11 @@ package io.analysis.coupling;
 
 import org.objectweb.asm.ClassReader;
 
-public class OutboundDependencies {
+public class CouplingCalculator {
 
     private InstrumentedClass instrumentedClass;
 
-    public OutboundDependencies(InstrumentedClass instrumentedClass) {
+    public CouplingCalculator(InstrumentedClass instrumentedClass) {
         this.instrumentedClass = instrumentedClass;
     }
 
