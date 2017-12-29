@@ -14,6 +14,10 @@ public class Dependency {
         this.methodSignature = methodSignature;
     }
 
+    public String owner() {
+        return className;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -26,6 +26,6 @@ public class OutboundDependenciesTest {
         OutboundDependencies outboundDependencies = new OutboundDependencies(instrumentedClass);
         EfferentCoupling efferentCoupling = outboundDependencies.efferentCoupling();
         assertEquals("io/analysis/coupling/classes/Receiver", efferentCoupling.className());
-        assertEquals(3, efferentCoupling.value());
+        assertEquals(2, efferentCoupling.value());
     }
 }

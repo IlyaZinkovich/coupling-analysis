@@ -17,6 +17,6 @@ public class EfferentCoupling {
     }
 
     public int value() {
-        return outboundDependenciesCount.entrySet().stream().mapToInt(Map.Entry::getValue).sum();
+        return outboundDependenciesCount.entrySet().stream().filter(entry -> !className.equals(entry.getKey().owner())).mapToInt(Map.Entry::getValue).sum();
     }
 }
