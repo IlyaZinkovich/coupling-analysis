@@ -14,7 +14,7 @@ public class Dependency {
         this.methodSignature = methodSignature;
     }
 
-    public String owner() {
+    public String className() {
         return className;
     }
 

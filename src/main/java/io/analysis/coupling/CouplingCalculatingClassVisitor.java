@@ -29,9 +29,11 @@ public class CouplingCalculatingClassVisitor extends ClassVisitor {
             @Override
             public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
                 super.visitMethodInsn(opcode, owner, name, desc, itf);
-                Dependency dependency = new Dependency(owner, name, desc);
-                outboundDependenciesCount.putIfAbsent(dependency, 0);
-                outboundDependenciesCount.put(dependency, outboundDependenciesCount.get(dependency) + 1);
+                if (!internalClassName.equals(owner)) {
+                    Dependency dependency = new Dependency(owner, name, desc);
+                    outboundDependenciesCount.putIfAbsent(dependency, 0);
+                    outboundDependenciesCount.put(dependency, outboundDependenciesCount.get(dependency) + 1);
+                }
             }
         };
     }
