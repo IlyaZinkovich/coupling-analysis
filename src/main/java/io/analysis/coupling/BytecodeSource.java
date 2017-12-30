@@ -5,14 +5,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-public class InstrumentedClass {
+public class BytecodeSource {
 
     private String path;
 
     private byte[] cachedBytecode;
 
-    public InstrumentedClass(String path) {
-        this.path = path;
+    public BytecodeSource(String filePath) {
+        this.path = filePath;
     }
 
     public byte[] bytecode() {

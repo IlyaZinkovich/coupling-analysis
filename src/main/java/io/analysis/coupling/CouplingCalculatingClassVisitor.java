@@ -4,13 +4,15 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class CouplingCalculatingClassVisitor extends ClassVisitor {
 
-    private String internalClassName;
-    private Map<Dependency, Integer> outboundDependenciesCount = new HashMap<>();
+    private String callingClassName;
+    private List<CouplingCollectingMethodVisitor> methodVisitors = new ArrayList<>();
 
     public CouplingCalculatingClassVisitor() {
         super(Opcodes.ASM6);
@@ -19,26 +21,19 @@ public class CouplingCalculatingClassVisitor extends ClassVisitor {
     @Override
     public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
         super.visit(version, access, name, signature, superName, interfaces);
-        internalClassName = name;
+        callingClassName = name;
     }
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
         super.visitMethod(access, name, descriptor, signature, exceptions);
-        return new MethodVisitor(Opcodes.ASM6) {
-            @Override
-            public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
-                super.visitMethodInsn(opcode, owner, name, desc, itf);
-                if (!internalClassName.equals(owner)) {
-                    Dependency dependency = new Dependency(owner, name, desc);
-                    outboundDependenciesCount.putIfAbsent(dependency, 0);
-                    outboundDependenciesCount.put(dependency, outboundDependenciesCount.get(dependency) + 1);
-                }
-            }
-        };
+        final CouplingCollectingMethodVisitor methodVisitor =
+                new CouplingCollectingMethodVisitor(callingClassName, name, descriptor);
+        methodVisitors.add(methodVisitor);
+        return methodVisitor;
     }
 
-    public EfferentCoupling efferentCoupling() {
-        return new EfferentCoupling(internalClassName, outboundDependenciesCount);
+    public List<Coupling> couplings() {
+        return methodVisitors.stream().flatMap(visitor -> visitor.couplings().stream()).collect(toList());
     }
 }
