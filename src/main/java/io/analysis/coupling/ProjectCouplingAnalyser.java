@@ -1,6 +1,6 @@
 package io.analysis.coupling;
 
-import io.analysis.coupling.extract.CouplingExtractor;
+import io.analysis.coupling.extract.SingleSourceCouplingExtractor;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,7 +25,7 @@ public class ProjectCouplingAnalyser {
     public List<AnalysedClass> analyse() {
         try (Stream<Path> targetFilesPaths = Files.walk(Paths.get(targetDirectoryPath))) {
             final List<Coupling> couplings = targetFilesPaths.filter(path -> path.toString().endsWith(".class"))
-                    .flatMap(path -> new CouplingExtractor(new FileBytecodeSource(path)).couplings().stream())
+                    .flatMap(path -> new SingleSourceCouplingExtractor(new FileBytecodeSource(path)).couplings().stream())
                     .collect(toList());
             final Set<String> analysedClassesNames = couplings.stream()
                     .flatMap(coupling -> Stream.of(coupling.source(), coupling.target()))

@@ -10,12 +10,12 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public class CouplingCalculatingClassVisitor extends ClassVisitor {
+public class CouplingExtractingClassVisitor extends ClassVisitor {
 
     private String callingClassName;
-    private List<CouplingCollectingMethodVisitor> methodVisitors = new ArrayList<>();
+    private List<CouplingExtractingMethodVisitor> methodVisitors = new ArrayList<>();
 
-    public CouplingCalculatingClassVisitor() {
+    public CouplingExtractingClassVisitor() {
         super(Opcodes.ASM6);
     }
 
@@ -28,8 +28,8 @@ public class CouplingCalculatingClassVisitor extends ClassVisitor {
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
         super.visitMethod(access, name, descriptor, signature, exceptions);
-        final CouplingCollectingMethodVisitor methodVisitor =
-                new CouplingCollectingMethodVisitor(callingClassName, name, descriptor);
+        final CouplingExtractingMethodVisitor methodVisitor =
+                new CouplingExtractingMethodVisitor(callingClassName, name, descriptor);
         methodVisitors.add(methodVisitor);
         return methodVisitor;
     }

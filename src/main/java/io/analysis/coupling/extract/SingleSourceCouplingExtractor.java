@@ -5,17 +5,17 @@ import org.objectweb.asm.ClassReader;
 
 import java.util.List;
 
-public class CouplingExtractor {
+public class SingleSourceCouplingExtractor {
 
     private BytecodeSource bytecodeSource;
 
-    public CouplingExtractor(BytecodeSource bytecodeSource) {
+    public SingleSourceCouplingExtractor(BytecodeSource bytecodeSource) {
         this.bytecodeSource = bytecodeSource;
     }
 
     public List<Coupling> couplings() {
         ClassReader reader = new ClassReader(bytecodeSource.bytecode());
-        CouplingCalculatingClassVisitor classVisitor = new CouplingCalculatingClassVisitor();
+        CouplingExtractingClassVisitor classVisitor = new CouplingExtractingClassVisitor();
         reader.accept(classVisitor, 0);
         return classVisitor.couplings();
     }

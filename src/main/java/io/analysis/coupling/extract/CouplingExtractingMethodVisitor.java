@@ -10,14 +10,14 @@ import java.util.List;
 
 import static java.util.Collections.unmodifiableList;
 
-public class CouplingCollectingMethodVisitor extends MethodVisitor {
+public class CouplingExtractingMethodVisitor extends MethodVisitor {
 
     private String callingClassName;
     private String callingMethodName;
     private String callingMethodDescriptor;
     private List<Coupling> couplings = new ArrayList<>();
 
-    public CouplingCollectingMethodVisitor(String callingClassName, String callingMethodName, String callingMethodDescriptor) {
+    public CouplingExtractingMethodVisitor(String callingClassName, String callingMethodName, String callingMethodDescriptor) {
         super(Opcodes.ASM6);
         this.callingClassName = callingClassName;
         this.callingMethodName = callingMethodName;
