@@ -28,13 +28,13 @@ public class CouplingStatistic {
 
     public List<AnalysedClass> analyse() {
         final Set<String> analysedClassesNames = coupling.stream()
-                .flatMap(coupling -> Stream.of(coupling.source(), coupling.target()))
+                .flatMap(couplingItem -> Stream.of(couplingItem.source(), couplingItem.target()))
                 .map(ClassPartDescriptor::className)
                 .collect(toSet());
         final Map<String, List<Coupling>> outboundCouplings = coupling.stream()
-                .collect(groupingBy(coupling -> coupling.source().className()));
+                .collect(groupingBy(couplingItem -> couplingItem.source().className()));
         final Map<String, List<Coupling>> inboundCouplings = coupling.stream()
-                .collect(groupingBy(coupling -> coupling.target().className()));
+                .collect(groupingBy(couplingItem -> couplingItem.target().className()));
         return analysedClassesNames.stream().map(className -> new AnalysedClass(
                         className,
                         outboundCouplings.getOrDefault(className, emptyList()),
