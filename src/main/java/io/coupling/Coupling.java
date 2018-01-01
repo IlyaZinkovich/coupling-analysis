@@ -1,4 +1,4 @@
-package io.analysis.coupling;
+package io.coupling;
 
 public class Coupling {
 

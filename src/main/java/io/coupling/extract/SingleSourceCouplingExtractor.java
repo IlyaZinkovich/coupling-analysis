@@ -1,9 +1,7 @@
-package io.analysis.coupling.extract;
+package io.coupling.extract;
 
-import io.analysis.coupling.Coupling;
+import io.coupling.CouplingStatistic;
 import org.objectweb.asm.ClassReader;
-
-import java.util.List;
 
 public class SingleSourceCouplingExtractor implements CouplingExtractor {
 
@@ -13,10 +11,11 @@ public class SingleSourceCouplingExtractor implements CouplingExtractor {
         this.bytecodeSource = bytecodeSource;
     }
 
-    public List<Coupling> coupling() {
+    @Override
+    public CouplingStatistic couplingStatistic() {
         ClassReader reader = new ClassReader(bytecodeSource.bytecode());
         CouplingExtractingClassVisitor classVisitor = new CouplingExtractingClassVisitor();
         reader.accept(classVisitor, 0);
-        return classVisitor.coupling();
+        return new CouplingStatistic(classVisitor.coupling());
     }
 }

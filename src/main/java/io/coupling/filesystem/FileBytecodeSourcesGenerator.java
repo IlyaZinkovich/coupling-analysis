@@ -1,6 +1,6 @@
-package io.analysis.coupling.filesystem;
+package io.coupling.filesystem;
 
-import io.analysis.coupling.extract.BytecodeSource;
+import io.coupling.extract.BytecodeSource;
 
 import java.io.IOException;
 import java.nio.file.Files;

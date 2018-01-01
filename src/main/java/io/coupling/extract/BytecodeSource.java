@@ -1,4 +1,4 @@
-package io.analysis.coupling.extract;
+package io.coupling.extract;
 
 public interface BytecodeSource {
 

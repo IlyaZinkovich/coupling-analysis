@@ -1,6 +1,6 @@
-package io.analysis.coupling.extract;
+package io.coupling.extract;
 
-import io.analysis.coupling.Coupling;
+import io.coupling.Coupling;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;

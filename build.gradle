@@ -1,4 +1,4 @@
-group 'io.analysis'
+group 'io.coupling'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'

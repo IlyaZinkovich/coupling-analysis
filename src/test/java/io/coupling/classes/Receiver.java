@@ -1,4 +1,4 @@
-package io.analysis.coupling.classes;
+package io.coupling.classes;
 
 public class Receiver {
 

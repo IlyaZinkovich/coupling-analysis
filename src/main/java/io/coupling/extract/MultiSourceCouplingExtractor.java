@@ -1,12 +1,10 @@
-package io.analysis.coupling.extract;
+package io.coupling.extract;
 
-import io.analysis.coupling.Coupling;
+import io.coupling.CouplingStatistic;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.Collections.emptyList;
 
 public class MultiSourceCouplingExtractor implements CouplingExtractor {
 
@@ -17,11 +15,11 @@ public class MultiSourceCouplingExtractor implements CouplingExtractor {
     }
 
     @Override
-    public List<Coupling> coupling() {
+    public CouplingStatistic couplingStatistic() {
         return Arrays.stream(bytecodeSources)
                 .map(SingleSourceCouplingExtractor::new)
-                .map(SingleSourceCouplingExtractor::coupling)
-                .flatMap(Collection::stream)
-                .collect(toList());
+                .map(SingleSourceCouplingExtractor::couplingStatistic)
+                .reduce(CouplingStatistic::merge)
+                .orElse(new CouplingStatistic(emptyList()));
     }
 }
