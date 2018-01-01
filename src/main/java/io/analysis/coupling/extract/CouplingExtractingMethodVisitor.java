@@ -27,12 +27,12 @@ public class CouplingExtractingMethodVisitor extends MethodVisitor {
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
         super.visitMethodInsn(opcode, owner, name, desc, itf);
-        final ClassPartDescriptor from = new ClassPartDescriptor(callingClassName, callingMethodName, callingMethodDescriptor);
-        final ClassPartDescriptor to = new ClassPartDescriptor(owner, name, desc);
-        couplings.add(new Coupling(from, to));
+        final ClassPartDescriptor source = new ClassPartDescriptor(callingClassName, callingMethodName, callingMethodDescriptor);
+        final ClassPartDescriptor target = new ClassPartDescriptor(owner, name, desc);
+        couplings.add(new Coupling(source, target));
     }
 
-    public List<Coupling> couplings() {
+    public List<Coupling> coupling() {
         return unmodifiableList(couplings);
     }
 }

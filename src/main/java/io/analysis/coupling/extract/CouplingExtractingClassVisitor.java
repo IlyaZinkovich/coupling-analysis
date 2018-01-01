@@ -34,7 +34,7 @@ public class CouplingExtractingClassVisitor extends ClassVisitor {
         return methodVisitor;
     }
 
-    public List<Coupling> couplings() {
-        return methodVisitors.stream().flatMap(visitor -> visitor.couplings().stream()).collect(toList());
+    public List<Coupling> coupling() {
+        return methodVisitors.stream().flatMap(visitor -> visitor.coupling().stream()).collect(toList());
     }
 }

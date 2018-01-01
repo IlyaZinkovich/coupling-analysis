@@ -25,7 +25,7 @@ public class ProjectCouplingAnalyser {
     public List<AnalysedClass> analyse() {
         try (Stream<Path> targetFilesPaths = Files.walk(Paths.get(targetDirectoryPath))) {
             final List<Coupling> couplings = targetFilesPaths.filter(path -> path.toString().endsWith(".class"))
-                    .flatMap(path -> new SingleSourceCouplingExtractor(new FileBytecodeSource(path)).couplings().stream())
+                    .flatMap(path -> new SingleSourceCouplingExtractor(new FileBytecodeSource(path)).coupling().stream())
                     .collect(toList());
             final Set<String> analysedClassesNames = couplings.stream()
                     .flatMap(coupling -> Stream.of(coupling.source(), coupling.target()))
