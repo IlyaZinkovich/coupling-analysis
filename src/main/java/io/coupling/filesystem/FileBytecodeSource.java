@@ -1,6 +1,6 @@
 package io.coupling.filesystem;
 
-import io.coupling.bytecode.BytecodeSource;
+import io.coupling.extract.BytecodeSource;
 
 import java.io.IOException;
 import java.nio.file.Files;

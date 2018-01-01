@@ -1,7 +1,6 @@
 package io.coupling;
 
 import io.coupling.core.AnalysedClass;
-import io.coupling.statistic.ProjectCouplingAnalyser;
 import org.junit.Test;
 
 import java.util.List;

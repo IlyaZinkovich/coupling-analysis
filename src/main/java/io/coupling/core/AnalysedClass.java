@@ -5,21 +5,21 @@ import java.util.List;
 public class AnalysedClass {
 
     private final String className;
-    private final List<Coupling> outboundCouplings;
-    private final List<Coupling> inboundCouplings;
+    private final List<Coupling> outboundCoupling;
+    private final List<Coupling> inboundCoupling;
 
-    public AnalysedClass(String className, List<Coupling> outboundCouplings, List<Coupling> inboundCouplings) {
+    public AnalysedClass(String className, List<Coupling> outboundCoupling, List<Coupling> inboundCoupling) {
         this.className = className;
-        this.outboundCouplings = outboundCouplings;
-        this.inboundCouplings = inboundCouplings;
+        this.outboundCoupling = outboundCoupling;
+        this.inboundCoupling = inboundCoupling;
     }
 
     public int efferentCoupling() {
-        return outboundCouplings.size();
+        return outboundCoupling.size();
     }
 
     public int afferentCoupling() {
-        return (int) inboundCouplings.stream().map(Coupling::source).map(ClassPartDescriptor::className).distinct().count();
+        return (int) inboundCoupling.stream().map(Coupling::source).map(ClassPartDescriptor::className).distinct().count();
     }
 
     public String className() {

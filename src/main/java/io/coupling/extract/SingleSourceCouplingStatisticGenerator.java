@@ -1,6 +1,5 @@
-package io.coupling.bytecode;
+package io.coupling.extract;
 
-import io.coupling.extract.CouplingExtractingClassVisitor;
 import io.coupling.core.CouplingStatistic;
 import io.coupling.statistic.CouplingStatisticGenerator;
 import org.objectweb.asm.ClassReader;
