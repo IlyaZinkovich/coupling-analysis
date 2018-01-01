@@ -33,15 +33,14 @@ public class ProjectCouplingAnalyser {
                     .collect(groupingBy(coupling -> coupling.from().className()));
             final Map<String, List<Coupling>> inboundCouplings = couplings.stream()
                     .collect(groupingBy(coupling -> coupling.to().className()));
-            final List<AnalysedClass> analysedClasses = analysedClassesNames.stream()
-                    .map(className -> new AnalysedClass(className,
+            return analysedClassesNames.stream().map(className -> new AnalysedClass(
+                            className,
                             outboundCouplings.getOrDefault(className, emptyList()),
-                            inboundCouplings.getOrDefault(className, emptyList()))
+                            inboundCouplings.getOrDefault(className, emptyList())
                     )
-                    .collect(toList());
-            return analysedClasses;
+            ).collect(toList());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new ClassNotFoundByPathException(targetDirectoryPath, e);
         }
     }
 }
