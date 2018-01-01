@@ -1,4 +1,4 @@
-package io.coupling;
+package io.coupling.core;
 
 import java.util.List;
 
@@ -24,12 +24,5 @@ public class AnalysedClass {
 
     public String className() {
         return className;
-    }
-
-    @Override
-    public String toString() {
-        return className +
-                "\t " + afferentCoupling() +
-                "\t " + efferentCoupling();
     }
 }

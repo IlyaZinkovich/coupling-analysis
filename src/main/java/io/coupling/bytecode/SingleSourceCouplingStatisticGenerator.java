@@ -1,13 +1,15 @@
-package io.coupling.extract;
+package io.coupling.bytecode;
 
-import io.coupling.CouplingStatistic;
+import io.coupling.extract.CouplingExtractingClassVisitor;
+import io.coupling.core.CouplingStatistic;
+import io.coupling.statistic.CouplingStatisticGenerator;
 import org.objectweb.asm.ClassReader;
 
-public class SingleSourceCouplingExtractor implements CouplingExtractor {
+public class SingleSourceCouplingStatisticGenerator implements CouplingStatisticGenerator {
 
     private BytecodeSource bytecodeSource;
 
-    public SingleSourceCouplingExtractor(BytecodeSource bytecodeSource) {
+    public SingleSourceCouplingStatisticGenerator(BytecodeSource bytecodeSource) {
         this.bytecodeSource = bytecodeSource;
     }
 

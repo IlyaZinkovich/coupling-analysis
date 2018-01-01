@@ -1,6 +1,6 @@
 package io.coupling.extract;
 
-import io.coupling.Coupling;
+import io.coupling.core.Coupling;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
