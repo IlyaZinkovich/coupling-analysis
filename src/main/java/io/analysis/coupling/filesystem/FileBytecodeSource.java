@@ -1,4 +1,4 @@
-package io.analysis.coupling;
+package io.analysis.coupling.filesystem;
 
 import io.analysis.coupling.extract.BytecodeSource;
 
