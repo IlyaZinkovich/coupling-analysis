@@ -1,5 +1,6 @@
 package io.analysis.coupling;
 
+import java.util.List;
 import java.util.Map;
 
 import static java.util.stream.Collectors.groupingBy;

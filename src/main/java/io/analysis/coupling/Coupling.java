@@ -2,11 +2,19 @@ package io.analysis.coupling;
 
 public class Coupling {
 
-    private Dependency outboundDependency;
-    private Dependency inboundDependency;
+    private Dependency to;
+    private Dependency from;
 
-    public Coupling(Dependency outboundDependency, Dependency inboundDependency) {
-        this.outboundDependency = outboundDependency;
-        this.inboundDependency = inboundDependency;
+    public Coupling(Dependency from, Dependency to) {
+        this.to = to;
+        this.from = from;
+    }
+
+    public Dependency to() {
+        return to;
+    }
+
+    public Dependency from() {
+        return from;
     }
 }
