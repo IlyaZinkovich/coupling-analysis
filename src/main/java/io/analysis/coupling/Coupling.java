@@ -2,19 +2,19 @@ package io.analysis.coupling;
 
 public class Coupling {
 
-    private Dependency to;
-    private Dependency from;
+    private ClassPartDescriptor source;
+    private ClassPartDescriptor target;
 
-    public Coupling(Dependency from, Dependency to) {
-        this.to = to;
-        this.from = from;
+    public Coupling(ClassPartDescriptor source, ClassPartDescriptor target) {
+        this.target = target;
+        this.source = source;
     }
 
-    public Dependency to() {
-        return to;
+    public ClassPartDescriptor to() {
+        return target;
     }
 
-    public Dependency from() {
-        return from;
+    public ClassPartDescriptor from() {
+        return source;
     }
 }

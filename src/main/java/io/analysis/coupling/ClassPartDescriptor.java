@@ -2,13 +2,13 @@ package io.analysis.coupling;
 
 import java.util.Objects;
 
-public class Dependency {
+public class ClassPartDescriptor {
 
     private String className;
     private String methodName;
     private String methodSignature;
 
-    public Dependency(String className, String methodName, String methodSignature) {
+    public ClassPartDescriptor(String className, String methodName, String methodSignature) {
         this.className = className;
         this.methodName = methodName;
         this.methodSignature = methodSignature;
@@ -22,7 +22,7 @@ public class Dependency {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Dependency that = (Dependency) o;
+        ClassPartDescriptor that = (ClassPartDescriptor) o;
         return Objects.equals(className, that.className) &&
                 Objects.equals(methodName, that.methodName) &&
                 Objects.equals(methodSignature, that.methodSignature);

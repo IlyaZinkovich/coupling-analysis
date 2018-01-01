@@ -19,7 +19,7 @@ public class AnalysedClass {
     }
 
     public int afferentCoupling() {
-        return (int) inboundCouplings.stream().map(Coupling::from).map(Dependency::className).distinct().count();
+        return (int) inboundCouplings.stream().map(Coupling::from).map(ClassPartDescriptor::className).distinct().count();
     }
 
     public String className() {

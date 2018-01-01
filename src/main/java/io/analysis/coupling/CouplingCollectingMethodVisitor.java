@@ -25,8 +25,8 @@ public class CouplingCollectingMethodVisitor extends MethodVisitor {
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
         super.visitMethodInsn(opcode, owner, name, desc, itf);
-        final Dependency from = new Dependency(callingClassName, callingMethodName, callingMethodDescriptor);
-        final Dependency to = new Dependency(owner, name, desc);
+        final ClassPartDescriptor from = new ClassPartDescriptor(callingClassName, callingMethodName, callingMethodDescriptor);
+        final ClassPartDescriptor to = new ClassPartDescriptor(owner, name, desc);
         couplings.add(new Coupling(from, to));
     }
 

@@ -27,7 +27,7 @@ public class ProjectCouplingAnalyser {
                     .collect(toList());
             final Set<String> analysedClassesNames = couplings.stream()
                     .flatMap(coupling -> Stream.of(coupling.from(), coupling.to()))
-                    .map(Dependency::className)
+                    .map(ClassPartDescriptor::className)
                     .collect(toSet());
             final Map<String, List<Coupling>> outboundCouplings = couplings.stream()
                     .collect(groupingBy(coupling -> coupling.from().className()));
