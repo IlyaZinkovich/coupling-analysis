@@ -1,14 +1,15 @@
-package io.analysis.coupling;
+package io.analysis.coupling.extract;
 
+import io.analysis.coupling.Coupling;
 import org.objectweb.asm.ClassReader;
 
 import java.util.List;
 
-public class CouplingCalculator {
+public class CouplingExtractor {
 
     private BytecodeSource bytecodeSource;
 
-    public CouplingCalculator(BytecodeSource bytecodeSource) {
+    public CouplingExtractor(BytecodeSource bytecodeSource) {
         this.bytecodeSource = bytecodeSource;
     }
 

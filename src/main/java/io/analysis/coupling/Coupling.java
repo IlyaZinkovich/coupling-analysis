@@ -10,11 +10,11 @@ public class Coupling {
         this.source = source;
     }
 
-    public ClassPartDescriptor to() {
+    public ClassPartDescriptor target() {
         return target;
     }
 
-    public ClassPartDescriptor from() {
+    public ClassPartDescriptor source() {
         return source;
     }
 }

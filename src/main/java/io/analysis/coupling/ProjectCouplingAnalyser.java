@@ -1,5 +1,7 @@
 package io.analysis.coupling;
 
+import io.analysis.coupling.extract.CouplingExtractor;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,16 +25,16 @@ public class ProjectCouplingAnalyser {
     public List<AnalysedClass> analyse() {
         try (Stream<Path> targetFilesPaths = Files.walk(Paths.get(targetDirectoryPath))) {
             final List<Coupling> couplings = targetFilesPaths.filter(path -> path.toString().endsWith(".class"))
-                    .flatMap(path -> new CouplingCalculator(new BytecodeSource(path)).couplings().stream())
+                    .flatMap(path -> new CouplingExtractor(new FileBytecodeSource(path)).couplings().stream())
                     .collect(toList());
             final Set<String> analysedClassesNames = couplings.stream()
-                    .flatMap(coupling -> Stream.of(coupling.from(), coupling.to()))
+                    .flatMap(coupling -> Stream.of(coupling.source(), coupling.target()))
                     .map(ClassPartDescriptor::className)
                     .collect(toSet());
             final Map<String, List<Coupling>> outboundCouplings = couplings.stream()
-                    .collect(groupingBy(coupling -> coupling.from().className()));
+                    .collect(groupingBy(coupling -> coupling.source().className()));
             final Map<String, List<Coupling>> inboundCouplings = couplings.stream()
-                    .collect(groupingBy(coupling -> coupling.to().className()));
+                    .collect(groupingBy(coupling -> coupling.target().className()));
             return analysedClassesNames.stream().map(className -> new AnalysedClass(
                             className,
                             outboundCouplings.getOrDefault(className, emptyList()),
@@ -40,7 +42,7 @@ public class ProjectCouplingAnalyser {
                     )
             ).collect(toList());
         } catch (IOException e) {
-            throw new ClassNotFoundByPathException(targetDirectoryPath, e);
+            throw new BytecodeNotFoundByPathException(targetDirectoryPath, e);
         }
     }
 }

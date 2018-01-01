@@ -19,10 +19,17 @@ public class AnalysedClass {
     }
 
     public int afferentCoupling() {
-        return (int) inboundCouplings.stream().map(Coupling::from).map(ClassPartDescriptor::className).distinct().count();
+        return (int) inboundCouplings.stream().map(Coupling::source).map(ClassPartDescriptor::className).distinct().count();
     }
 
     public String className() {
         return className;
+    }
+
+    @Override
+    public String toString() {
+        return className +
+                "\t " + afferentCoupling() +
+                "\t " + efferentCoupling();
     }
 }
