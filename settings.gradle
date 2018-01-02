@@ -1,1 +1,4 @@
-rootProject.name = 'analysis'
+rootProject.name = 'coupling-analysis'
+include 'intellij-plugin'
+include 'core'
+

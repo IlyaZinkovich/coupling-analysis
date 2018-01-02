@@ -1,7 +1,10 @@
 package io.coupling;
 
+import io.coupling.core.AnalysedClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Comparator;
 
 public class App {
 
@@ -11,6 +14,7 @@ public class App {
         new ProjectCouplingAnalyser("build/classes").analyse().stream()
                 .filter(analysedClass -> analysedClass.className().startsWith("io"))
                 .filter(analysedClass -> !analysedClass.className().endsWith("Test"))
+                .sorted(Comparator.comparing(AnalysedClass::className))
                 .forEach(analysedClass -> {
                     final String className = analysedClass.className();
                     final int afferentCoupling = analysedClass.afferentCoupling();
