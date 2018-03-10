@@ -1,4 +1,4 @@
-package io.coupling.filesystem;
+package io.coupling.infrastructure.extract.filesystem;
 
 public class BytecodeNotFoundByPathException extends RuntimeException {
 

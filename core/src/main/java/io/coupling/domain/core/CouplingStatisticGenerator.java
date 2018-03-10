@@ -1,6 +1,4 @@
-package io.coupling.statistic;
-
-import io.coupling.core.CouplingStatistic;
+package io.coupling.domain.core;
 
 public interface CouplingStatisticGenerator {
 

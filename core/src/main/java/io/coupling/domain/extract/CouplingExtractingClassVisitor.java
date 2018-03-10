@@ -1,8 +1,8 @@
-package io.coupling.extract;
+package io.coupling.domain.extract;
 
 import static java.util.stream.Collectors.toList;
 
-import io.coupling.core.Coupling;
+import io.coupling.domain.core.Coupling;
 import java.util.ArrayList;
 import java.util.List;
 import org.objectweb.asm.ClassVisitor;
@@ -14,7 +14,7 @@ public class CouplingExtractingClassVisitor extends ClassVisitor {
   private String callingClassName;
   private List<CouplingExtractingMethodVisitor> methodVisitors = new ArrayList<>();
 
-  public CouplingExtractingClassVisitor() {
+  CouplingExtractingClassVisitor() {
     super(Opcodes.ASM6);
   }
 
@@ -35,7 +35,7 @@ public class CouplingExtractingClassVisitor extends ClassVisitor {
     return methodVisitor;
   }
 
-  public List<Coupling> coupling() {
+  List<Coupling> coupling() {
     return methodVisitors.stream().flatMap(visitor -> visitor.coupling().stream())
         .collect(toList());
   }

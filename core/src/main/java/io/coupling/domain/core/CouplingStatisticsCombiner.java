@@ -1,8 +1,7 @@
-package io.coupling.statistic;
+package io.coupling.domain.core;
 
 import static java.util.Collections.emptyList;
 
-import io.coupling.core.CouplingStatistic;
 import java.util.Arrays;
 
 public class CouplingStatisticsCombiner implements CouplingStatisticGenerator {

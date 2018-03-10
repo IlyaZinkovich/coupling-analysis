@@ -1,4 +1,4 @@
-package io.coupling.core;
+package io.coupling.domain.core;
 
 public class Coupling {
 

@@ -1,10 +1,10 @@
-package io.coupling;
+package io.coupling.service;
 
-import io.coupling.core.AnalysedClass;
-import io.coupling.extract.BytecodeSource;
-import io.coupling.extract.SingleSourceCouplingStatisticGenerator;
-import io.coupling.filesystem.FileBytecodeSourcesGenerator;
-import io.coupling.statistic.CouplingStatisticsCombiner;
+import io.coupling.domain.core.AnalysedClass;
+import io.coupling.domain.core.CouplingStatisticsCombiner;
+import io.coupling.domain.extract.BytecodeSource;
+import io.coupling.domain.extract.SingleSourceCouplingStatisticGenerator;
+import io.coupling.infrastructure.extract.filesystem.FileBytecodeSourcesGenerator;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;

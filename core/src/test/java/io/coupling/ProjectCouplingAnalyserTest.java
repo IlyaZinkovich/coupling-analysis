@@ -2,7 +2,8 @@ package io.coupling;
 
 import static org.junit.Assert.assertEquals;
 
-import io.coupling.core.AnalysedClass;
+import io.coupling.domain.core.AnalysedClass;
+import io.coupling.service.ProjectCouplingAnalyser;
 import java.util.List;
 import java.util.Optional;
 import org.junit.Test;

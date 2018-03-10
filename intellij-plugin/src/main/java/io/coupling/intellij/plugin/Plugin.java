@@ -1,6 +1,6 @@
 package io.coupling.intellij.plugin;
 
-import io.coupling.ProjectCouplingAnalyser;
+import io.coupling.service.ProjectCouplingAnalyser;
 
 public class Plugin {
 

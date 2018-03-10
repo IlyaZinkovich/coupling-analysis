@@ -1,9 +1,9 @@
-package io.coupling.extract;
+package io.coupling.domain.extract;
 
 import static java.util.Collections.unmodifiableList;
 
-import io.coupling.core.ClassPartDescriptor;
-import io.coupling.core.Coupling;
+import io.coupling.domain.core.ClassPartDescriptor;
+import io.coupling.domain.core.Coupling;
 import java.util.ArrayList;
 import java.util.List;
 import org.objectweb.asm.MethodVisitor;
@@ -16,7 +16,7 @@ public class CouplingExtractingMethodVisitor extends MethodVisitor {
   private String callingMethodDescriptor;
   private List<Coupling> couplings = new ArrayList<>();
 
-  public CouplingExtractingMethodVisitor(String callingClassName, String callingMethodName,
+  CouplingExtractingMethodVisitor(String callingClassName, String callingMethodName,
       String callingMethodDescriptor) {
     super(Opcodes.ASM6);
     this.callingClassName = callingClassName;
@@ -33,7 +33,7 @@ public class CouplingExtractingMethodVisitor extends MethodVisitor {
     couplings.add(new Coupling(source, target));
   }
 
-  public List<Coupling> coupling() {
+  List<Coupling> coupling() {
     return unmodifiableList(couplings);
   }
 }

@@ -1,6 +1,7 @@
 package io.coupling;
 
-import io.coupling.core.AnalysedClass;
+import io.coupling.domain.core.AnalysedClass;
+import io.coupling.service.ProjectCouplingAnalyser;
 import java.util.Comparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

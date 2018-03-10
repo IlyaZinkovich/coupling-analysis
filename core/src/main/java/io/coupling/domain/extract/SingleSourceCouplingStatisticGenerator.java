@@ -1,7 +1,7 @@
-package io.coupling.extract;
+package io.coupling.domain.extract;
 
-import io.coupling.core.CouplingStatistic;
-import io.coupling.statistic.CouplingStatisticGenerator;
+import io.coupling.domain.core.CouplingStatistic;
+import io.coupling.domain.core.CouplingStatisticGenerator;
 import org.objectweb.asm.ClassReader;
 
 public class SingleSourceCouplingStatisticGenerator implements CouplingStatisticGenerator {

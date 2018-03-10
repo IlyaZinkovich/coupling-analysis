@@ -1,4 +1,4 @@
-package io.coupling.core;
+package io.coupling.domain.core;
 
 import java.util.List;
 
