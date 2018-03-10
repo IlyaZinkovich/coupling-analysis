@@ -11,7 +11,7 @@ public class App {
   private static final Logger logger = LoggerFactory.getLogger(App.class);
 
   public static void main(String[] args) {
-    new ProjectCouplingAnalyser("core/build/classes").analyse().stream()
+    new ProjectCouplingAnalyser("core/out/production/classes").analyse().stream()
         .filter(analysedClass -> analysedClass.className().startsWith("io"))
         .filter(analysedClass -> !analysedClass.className().endsWith("Test"))
         .sorted(Comparator.comparing(AnalysedClass::className))
