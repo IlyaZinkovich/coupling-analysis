@@ -8,11 +8,10 @@ import java.util.Optional;
 
 public class FileBytecodeSource implements BytecodeSource {
 
-  private Path path;
-
+  private final Path path;
   private byte[] cachedBytecode;
 
-  public FileBytecodeSource(Path filePath) {
+  public FileBytecodeSource(final Path filePath) {
     this.path = filePath;
   }
 

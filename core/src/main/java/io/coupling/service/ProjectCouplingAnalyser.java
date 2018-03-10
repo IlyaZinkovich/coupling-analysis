@@ -11,9 +11,9 @@ import java.util.List;
 
 public class ProjectCouplingAnalyser {
 
-  private String targetDirectory;
+  private final String targetDirectory;
 
-  public ProjectCouplingAnalyser(String targetDirectory) {
+  public ProjectCouplingAnalyser(final String targetDirectory) {
     this.targetDirectory = targetDirectory;
   }
 

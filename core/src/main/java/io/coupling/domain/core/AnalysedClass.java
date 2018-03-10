@@ -8,7 +8,7 @@ public class AnalysedClass {
   private final List<Coupling> outboundCoupling;
   private final List<Coupling> inboundCoupling;
 
-  public AnalysedClass(String className, List<Coupling> outboundCoupling,
+  AnalysedClass(String className, List<Coupling> outboundCoupling,
       List<Coupling> inboundCoupling) {
     this.className = className;
     this.outboundCoupling = outboundCoupling;

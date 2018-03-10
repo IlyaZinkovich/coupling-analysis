@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public class AnalysedClasses {
 
-  private List<Coupling> coupling;
+  private final List<Coupling> coupling;
 
   AnalysedClasses(final List<Coupling> coupling) {
     this.coupling = unmodifiableList(coupling);

@@ -8,17 +8,17 @@ import java.util.stream.Stream;
 
 public class FileBytecodeSourcesGenerator {
 
-  private Path rootDirectoryPath;
+  private final Path rootDirectoryPath;
 
-  public FileBytecodeSourcesGenerator(Path rootDirectoryPath) {
+  public FileBytecodeSourcesGenerator(final Path rootDirectoryPath) {
     this.rootDirectoryPath = rootDirectoryPath;
   }
 
   public BytecodeSource[] bytecodeSources() {
-    try (Stream<Path> targetFilesPaths = Files.walk(rootDirectoryPath)) {
+    try (final Stream<Path> targetFilesPaths = Files.walk(rootDirectoryPath)) {
       return targetFilesPaths.filter(path -> path.toString().endsWith(".class"))
           .map(FileBytecodeSource::new).toArray(BytecodeSource[]::new);
-    } catch (IOException e) {
+    } catch (final IOException e) {
       throw new BytecodeNotFoundByPathException(rootDirectoryPath.toString(), e);
     }
   }

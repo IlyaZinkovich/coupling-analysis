@@ -6,9 +6,9 @@ import java.util.Arrays;
 
 public class CouplingStatisticsCombiner implements CouplingStatisticGenerator {
 
-  private CouplingStatisticGenerator[] generators;
+  private final CouplingStatisticGenerator[] generators;
 
-  public CouplingStatisticsCombiner(CouplingStatisticGenerator... generators) {
+  public CouplingStatisticsCombiner(final CouplingStatisticGenerator... generators) {
     this.generators = generators;
   }
 

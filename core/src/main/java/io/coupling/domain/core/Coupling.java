@@ -2,10 +2,10 @@ package io.coupling.domain.core;
 
 public class Coupling {
 
-  private ClassPartDescriptor source;
-  private ClassPartDescriptor target;
+  private final ClassPartDescriptor source;
+  private final ClassPartDescriptor target;
 
-  public Coupling(ClassPartDescriptor source, ClassPartDescriptor target) {
+  public Coupling(final ClassPartDescriptor source, final ClassPartDescriptor target) {
     this.target = target;
     this.source = source;
   }

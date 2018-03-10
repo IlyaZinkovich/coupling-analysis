@@ -4,11 +4,12 @@ import java.util.Objects;
 
 public class ClassPartDescriptor {
 
-  private String className;
-  private String methodName;
-  private String methodSignature;
+  private final String className;
+  private final String methodName;
+  private final String methodSignature;
 
-  public ClassPartDescriptor(String className, String methodName, String methodSignature) {
+  public ClassPartDescriptor(final String className, final String methodName,
+      final String methodSignature) {
     this.className = className;
     this.methodName = methodName;
     this.methodSignature = methodSignature;
