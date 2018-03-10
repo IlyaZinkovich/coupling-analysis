@@ -4,7 +4,7 @@ import io.coupling.ProjectCouplingAnalyser;
 
 public class Plugin {
 
-    public static void main(String[] args) {
-        new ProjectCouplingAnalyser("");
-    }
+  public static void main(String[] args) {
+    new ProjectCouplingAnalyser("");
+  }
 }

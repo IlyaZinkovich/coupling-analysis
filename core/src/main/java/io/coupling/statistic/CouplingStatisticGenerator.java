@@ -4,5 +4,5 @@ import io.coupling.core.CouplingStatistic;
 
 public interface CouplingStatisticGenerator {
 
-    CouplingStatistic couplingStatistic();
+  CouplingStatistic couplingStatistic();
 }

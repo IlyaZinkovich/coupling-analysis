@@ -1,25 +1,24 @@
 package io.coupling;
 
 import io.coupling.core.AnalysedClass;
+import java.util.Comparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Comparator;
-
 public class App {
 
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+  private static final Logger logger = LoggerFactory.getLogger(App.class);
 
-    public static void main(String[] args) {
-        new ProjectCouplingAnalyser("build/classes").analyse().stream()
-                .filter(analysedClass -> analysedClass.className().startsWith("io"))
-                .filter(analysedClass -> !analysedClass.className().endsWith("Test"))
-                .sorted(Comparator.comparing(AnalysedClass::className))
-                .forEach(analysedClass -> {
-                    final String className = analysedClass.className();
-                    final int afferentCoupling = analysedClass.afferentCoupling();
-                    final int efferentCoupling = analysedClass.efferentCoupling();
-                    logger.info(String.format("%s %d %d", className, afferentCoupling, efferentCoupling));
-                });
-    }
+  public static void main(String[] args) {
+    new ProjectCouplingAnalyser("core/build/classes").analyse().stream()
+        .filter(analysedClass -> analysedClass.className().startsWith("io"))
+        .filter(analysedClass -> !analysedClass.className().endsWith("Test"))
+        .sorted(Comparator.comparing(AnalysedClass::className))
+        .forEach(analysedClass -> {
+          final String className = analysedClass.className();
+          final int afferentCoupling = analysedClass.afferentCoupling();
+          final int efferentCoupling = analysedClass.efferentCoupling();
+          logger.info(String.format("%s %d %d", className, afferentCoupling, efferentCoupling));
+        });
+  }
 }

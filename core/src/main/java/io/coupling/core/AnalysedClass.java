@@ -4,25 +4,27 @@ import java.util.List;
 
 public class AnalysedClass {
 
-    private final String className;
-    private final List<Coupling> outboundCoupling;
-    private final List<Coupling> inboundCoupling;
+  private final String className;
+  private final List<Coupling> outboundCoupling;
+  private final List<Coupling> inboundCoupling;
 
-    public AnalysedClass(String className, List<Coupling> outboundCoupling, List<Coupling> inboundCoupling) {
-        this.className = className;
-        this.outboundCoupling = outboundCoupling;
-        this.inboundCoupling = inboundCoupling;
-    }
+  public AnalysedClass(String className, List<Coupling> outboundCoupling,
+      List<Coupling> inboundCoupling) {
+    this.className = className;
+    this.outboundCoupling = outboundCoupling;
+    this.inboundCoupling = inboundCoupling;
+  }
 
-    public int efferentCoupling() {
-        return outboundCoupling.size();
-    }
+  public int efferentCoupling() {
+    return outboundCoupling.size();
+  }
 
-    public int afferentCoupling() {
-        return (int) inboundCoupling.stream().map(Coupling::source).map(ClassPartDescriptor::className).distinct().count();
-    }
+  public int afferentCoupling() {
+    return (int) inboundCoupling.stream().map(Coupling::source).map(ClassPartDescriptor::className)
+        .distinct().count();
+  }
 
-    public String className() {
-        return className;
-    }
+  public String className() {
+    return className;
+  }
 }
