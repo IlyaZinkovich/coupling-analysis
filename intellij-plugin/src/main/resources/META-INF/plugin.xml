@@ -1,25 +1,26 @@
 <idea-plugin>
   <id>io.coupling.intellij-plugin</id>
   <name>Coupling Analysis</name>
-  <vendor email="ilya.zinkovich@gmail.com" url="http://www.ilyazinkovich.github.io">Ilya Zinkovich
+  <vendor email="ilya.zinkovich@gmail.com" url="http://www.ilyazinkovich.github.io">
+    Ilya Zinkovich
   </vendor>
 
   <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+      Coupling analysis plugin.<br>
     ]]></description>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-       on how to target different products -->
-  <!-- uncomment to enable plugin in all products
-  <depends>com.intellij.modules.lang</depends>
-  -->
+  <change-notes><![CDATA[
+      Release 0.0.1: Initial release.<br>
+    ]]>
+  </change-notes>
+
+  <idea-version since-build="162"/>
 
   <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
+    <toolWindow anchor="bottom" factoryClass="io.coupling.intellij.plugin.CouplingToolWindowFactory"
+      id="Coupling">
+    </toolWindow>
   </extensions>
 
-  <actions>
-    <!-- Add your actions here -->
-  </actions>
+  <actions/>
 </idea-plugin>
