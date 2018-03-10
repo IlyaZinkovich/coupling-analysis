@@ -22,4 +22,11 @@ public class ModuleOutputPath {
   public String absolute() {
     return absolutePath;
   }
+
+  public String moduleName() {
+    final String name = module.getName();
+    final int lastIndexOfUnderscore = name.lastIndexOf('_');
+    final int firstIndex = 0;
+    return name.substring(firstIndex, lastIndexOfUnderscore);
+  }
 }
