@@ -16,13 +16,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class CouplingToolWindowFactory implements ToolWindowFactory {
 
-  private Project project;
-  private ToolWindow toolWindow;
-
   @Override
-  public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-    this.project = project;
-    this.toolWindow = toolWindow;
+  public void createToolWindowContent(@NotNull final Project project,
+      @NotNull final ToolWindow toolWindow) {
     final JPanel projectPanel = createToolWindowPanel("Project", toolWindow);
     final JPanel currentFilePanel = createToolWindowPanel("Current File", toolWindow);
     currentFilePanel.add(new JButton("bla"));

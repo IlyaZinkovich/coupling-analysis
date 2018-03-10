@@ -22,8 +22,8 @@ public class ProjectCompiler {
     compilerManager.rebuild(this::compilationResults);
   }
 
-  private void compilationResults(boolean aborted, int errors, int warnings,
-      CompileContext compileContext) {
+  private void compilationResults(final boolean aborted, final int errors, final int warnings,
+      final CompileContext compileContext) {
     final Module[] affectedModules = compileContext.getCompileScope().getAffectedModules();
     Arrays.stream(affectedModules)
         .peek(module -> reportModuleCompilationResults(aborted, errors, warnings, module))
