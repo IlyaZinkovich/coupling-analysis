@@ -19,9 +19,9 @@ class AnalysedClassesPanelFactory {
   AnalysedClassesPanel create(final String name) {
     final AnalysedClassesTable table = tableFactory.create();
     final AnalysedClassesPanel panel = new AnalysedClassesPanel(name);
-    panel.add(table);
     panel.setLayout(new BorderLayout());
     panel.setBorder(Borders.empty(PADDING));
+    panel.add(table);
     toolWindowContent.add(panel);
     return panel;
   }
