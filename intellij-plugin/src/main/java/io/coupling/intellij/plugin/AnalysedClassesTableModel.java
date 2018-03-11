@@ -18,7 +18,8 @@ class AnalysedClassesTableModel extends DefaultTableModel {
     final String className = analysedClass.className().replace(DIRECTORY_SYNTAX, PACKAGE_SYNTAX);
     final int inboundCoupling = analysedClass.afferentCoupling();
     final int outboundCoupling = analysedClass.efferentCoupling();
-    addRow(new Object[]{className, inboundCoupling, outboundCoupling});
+    final double instability = analysedClass.instability();
+    addRow(new Object[]{className, inboundCoupling, outboundCoupling, instability});
   }
 
   String className(final int selectedRow) {
@@ -35,6 +36,8 @@ class AnalysedClassesTableModel extends DefaultTableModel {
         return Integer.class;
       case 2:
         return Integer.class;
+      case 3:
+        return Double.class;
       default:
         return String.class;
     }

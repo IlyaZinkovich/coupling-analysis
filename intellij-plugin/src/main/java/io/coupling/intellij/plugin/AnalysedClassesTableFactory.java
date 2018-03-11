@@ -6,9 +6,9 @@ import java.util.HashMap;
 
 class AnalysedClassesTableFactory {
 
-  private static final int PREFERRED_CLASS_COLUMN_WIDTH = 300;
+  private static final int PREFERRED_CLASS_COLUMN_WIDTH = 400;
   private static final int CLASS_COLUMN = 0;
-  private static final Object[] COLUMN_NAMES = {"Class", "In", "Out"};
+  private static final Object[] COLUMN_NAMES = {"Class", "In", "Out", "Instability"};
   private static final int NO_ROWS = 0;
 
   AnalysedClassesTable create() {

@@ -24,6 +24,12 @@ public class AnalysedClass {
         .distinct().count();
   }
 
+  public double instability() {
+    final int efferent = efferentCoupling();
+    final int afferent = afferentCoupling();
+    return (double) efferent / (efferent + afferent);
+  }
+
   public String className() {
     return className;
   }
