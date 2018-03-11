@@ -14,7 +14,7 @@ class ToolWindowContent {
     this.toolWindow = toolWindow;
   }
 
-  void add(JPanel panel) {
+  void add(final JPanel panel) {
     final ContentFactory contentFactory = SERVICE.getInstance();
     final boolean isNotLockable = false;
     final String panelName = panel.getName();

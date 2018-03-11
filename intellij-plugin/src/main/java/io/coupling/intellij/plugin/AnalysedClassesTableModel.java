@@ -5,15 +5,13 @@ import javax.swing.table.DefaultTableModel;
 
 class AnalysedClassesTableModel extends DefaultTableModel {
 
-  private static final Object[] COLUMN_NAMES = {"Class", "In", "Out"};
-  private static final int INITIAL_ROW_COUNT = 0;
   private static final char DIRECTORY_SYNTAX = '/';
   private static final char PACKAGE_SYNTAX = '.';
   private static final boolean NOT_EDITABLE = false;
   private static final int CLASS_NAME_COLUMN = 0;
 
-  AnalysedClassesTableModel() {
-    super(COLUMN_NAMES, INITIAL_ROW_COUNT);
+  AnalysedClassesTableModel(final Object[] columnNames, final int rowCount) {
+    super(columnNames, rowCount);
   }
 
   void add(final AnalysedClass analysedClass) {

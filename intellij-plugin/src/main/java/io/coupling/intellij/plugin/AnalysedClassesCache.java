@@ -15,7 +15,7 @@ class AnalysedClassesCache {
     cache.put(analysedClass.className(), analysedClass);
   }
 
-  AnalysedClass get(String selectedClassName) {
+  AnalysedClass get(final String selectedClassName) {
     return cache.get(selectedClassName);
   }
 }
