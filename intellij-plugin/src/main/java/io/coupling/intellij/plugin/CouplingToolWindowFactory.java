@@ -12,8 +12,11 @@ public class CouplingToolWindowFactory implements ToolWindowFactory {
   public void createToolWindowContent(@NotNull final Project project,
       @NotNull final ToolWindow toolWindow) {
     final CompilerManager compilerManager = CompilerManager.getInstance(project);
-    final AnalysedClassesTableFactory factory = new AnalysedClassesTableFactory();
-    final ModuleCompilationCallback callback = new ModuleCompilationCallback(toolWindow, factory);
+    final AnalysedClassesTableFactory tableFactory = new AnalysedClassesTableFactory();
+    final AnalysedClassesPanelFactory panelFactory = new AnalysedClassesPanelFactory();
+    final ToolWindowContent content = new ToolWindowContent(toolWindow);
+    final ModuleCompilationCallback callback =
+        new ModuleCompilationCallback(content, panelFactory, tableFactory);
     final ProjectCompiler projectCompiler = new ProjectCompiler(compilerManager, callback);
     projectCompiler.compile();
   }
