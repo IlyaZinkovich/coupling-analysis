@@ -4,6 +4,8 @@ import com.intellij.openapi.module.Module;
 
 public class ModuleOutputPath {
 
+  private static final char UNDERSCORE = '_';
+
   private final Module module;
   private final String absolutePath;
 
@@ -25,7 +27,7 @@ public class ModuleOutputPath {
 
   public String moduleName() {
     final String name = module.getName();
-    final int lastIndexOfUnderscore = name.lastIndexOf('_');
+    final int lastIndexOfUnderscore = name.lastIndexOf(UNDERSCORE);
     final int firstIndex = 0;
     return name.substring(firstIndex, lastIndexOfUnderscore);
   }

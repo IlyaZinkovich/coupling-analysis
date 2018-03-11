@@ -5,19 +5,25 @@ import javax.swing.table.DefaultTableModel;
 
 public class AnalysedClassesTableModel extends DefaultTableModel {
 
+  private static final Object[] COLUMN_NAMES = {"Class", "In", "Out"};
+  private static final int INITIAL_ROW_COUNT = 0;
+  private static final String DIRECTORY_SYNTAX = "/";
+  private static final String PACKAGE_SYNTAX = ".";
+  private static final boolean NOT_EDITABLE = false;
+
   AnalysedClassesTableModel() {
-    super(new Object[]{"Class", "In", "Out"}, 0);
+    super(COLUMN_NAMES, INITIAL_ROW_COUNT);
   }
 
-  public void add(AnalysedClass analysedClass) {
-    final String className = analysedClass.className().replaceAll("/", ".");
+  public void add(final AnalysedClass analysedClass) {
+    final String className = analysedClass.className().replaceAll(DIRECTORY_SYNTAX, PACKAGE_SYNTAX);
     final int inboundCoupling = analysedClass.afferentCoupling();
     final int outboundCoupling = analysedClass.efferentCoupling();
     addRow(new Object[]{className, inboundCoupling, outboundCoupling});
   }
 
   @Override
-  public Class getColumnClass(int column) {
+  public Class getColumnClass(final int column) {
     switch (column) {
       case 0:
         return String.class;
@@ -31,7 +37,7 @@ public class AnalysedClassesTableModel extends DefaultTableModel {
   }
 
   @Override
-  public boolean isCellEditable(int row, int column) {
-    return false;
+  public boolean isCellEditable(final int row, final int column) {
+    return NOT_EDITABLE;
   }
 }

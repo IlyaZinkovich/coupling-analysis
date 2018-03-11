@@ -8,6 +8,8 @@ import java.util.function.Consumer;
 
 public class ModuleCompilationCallback implements Consumer<ModuleOutputPath> {
 
+  private static final String PROJECT_CLASSES_DIRECTORY = "io/coupling";
+
   private final ToolWindow toolWindow;
 
   ModuleCompilationCallback(final ToolWindow toolWindow) {
@@ -22,7 +24,7 @@ public class ModuleCompilationCallback implements Consumer<ModuleOutputPath> {
     final ProjectCouplingAnalyser analyser = new ProjectCouplingAnalyser(path.absolute());
     final List<AnalysedClass> analysedClasses = analyser.analyse();
     analysedClasses.stream()
-        .filter(analysedClass -> analysedClass.className().startsWith("io/coupling"))
+        .filter(analysedClass -> analysedClass.className().startsWith(PROJECT_CLASSES_DIRECTORY))
         .forEach(tableModel::add);
   }
 }
