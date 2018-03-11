@@ -2,6 +2,7 @@ package io.coupling.intellij.plugin;
 
 import com.intellij.util.ui.JBUI.Borders;
 import java.awt.BorderLayout;
+import javax.swing.JPanel;
 
 class AnalysedClassesPanelFactory {
 
@@ -17,12 +18,19 @@ class AnalysedClassesPanelFactory {
   }
 
   AnalysedClassesPanel create(final String name) {
-    final AnalysedClassesTable table = tableFactory.create();
-    final AnalysedClassesPanel panel = new AnalysedClassesPanel(name);
+    final DetailedAnalysisPanel detailedAnalysisPanel = new DetailedAnalysisPanel();
+    configurePanelLayout(detailedAnalysisPanel);
+    final AnalysedClassesTable table = tableFactory.create(detailedAnalysisPanel);
+    final AnalysedClassesPanel analysedClassesPanel = new AnalysedClassesPanel(name);
+    configurePanelLayout(analysedClassesPanel);
+    analysedClassesPanel.add(table);
+    analysedClassesPanel.add(detailedAnalysisPanel);
+    toolWindowContent.add(analysedClassesPanel);
+    return analysedClassesPanel;
+  }
+
+  private void configurePanelLayout(final JPanel panel) {
     panel.setLayout(new BorderLayout());
     panel.setBorder(Borders.empty(PADDING));
-    panel.add(table);
-    toolWindowContent.add(panel);
-    return panel;
   }
 }

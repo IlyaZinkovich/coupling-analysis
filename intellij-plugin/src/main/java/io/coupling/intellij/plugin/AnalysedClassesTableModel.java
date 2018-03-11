@@ -10,11 +10,16 @@ class AnalysedClassesTableModel extends DefaultTableModel {
   private static final boolean NOT_EDITABLE = false;
   private static final int CLASS_NAME_COLUMN = 0;
 
-  AnalysedClassesTableModel(final Object[] columnNames, final int rowCount) {
+  private final transient AnalysedClassesCache cache;
+
+  AnalysedClassesTableModel(final Object[] columnNames, final int rowCount,
+      final AnalysedClassesCache cache) {
     super(columnNames, rowCount);
+    this.cache = cache;
   }
 
   void add(final AnalysedClass analysedClass) {
+    cache.put(analysedClass);
     final String className = analysedClass.className().replace(DIRECTORY_SYNTAX, PACKAGE_SYNTAX);
     final int inboundCoupling = analysedClass.afferentCoupling();
     final int outboundCoupling = analysedClass.efferentCoupling();
@@ -22,9 +27,10 @@ class AnalysedClassesTableModel extends DefaultTableModel {
     addRow(new Object[]{className, inboundCoupling, outboundCoupling, instability});
   }
 
-  String className(final int selectedRow) {
-    final String classNameView = (String) getValueAt(selectedRow, CLASS_NAME_COLUMN);
-    return classNameView.replace(PACKAGE_SYNTAX, DIRECTORY_SYNTAX);
+  AnalysedClass analysedClass(final int selectedRow) {
+    final String classViewName = (String) getValueAt(selectedRow, CLASS_NAME_COLUMN);
+    final String selectedClassName = classViewName.replace(PACKAGE_SYNTAX, DIRECTORY_SYNTAX);
+    return cache.get(selectedClassName);
   }
 
   @Override

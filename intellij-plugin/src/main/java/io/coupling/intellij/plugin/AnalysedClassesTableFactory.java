@@ -11,14 +11,17 @@ class AnalysedClassesTableFactory {
   private static final Object[] COLUMN_NAMES = {"Class", "In", "Out", "Instability"};
   private static final int NO_ROWS = 0;
 
-  AnalysedClassesTable create() {
-    final AnalysedClassesTableModel model = new AnalysedClassesTableModel(COLUMN_NAMES, NO_ROWS);
+  AnalysedClassesTable create(final DetailedAnalysisPanel detailedAnalysisPanel) {
     final AnalysedClassesCache cache = new AnalysedClassesCache(new HashMap<>());
-    final AnalysedClassesTable table = new AnalysedClassesTable(model, cache);
+    final AnalysedClassesTableModel analysedClassesTableModel =
+        new AnalysedClassesTableModel(COLUMN_NAMES, NO_ROWS, cache);
+    final AnalysedClassesTable table = new AnalysedClassesTable(analysedClassesTableModel);
     table.getColumnModel().getColumn(CLASS_COLUMN).setPreferredWidth(PREFERRED_CLASS_COLUMN_WIDTH);
     table.setAutoResizeMode(AUTO_RESIZE_ALL_COLUMNS);
     table.setAutoCreateRowSorter(true);
-    table.registerSelectionListener();
+    final AnalysedClassesSelectionListener selectionListener =
+        new AnalysedClassesSelectionListener(analysedClassesTableModel, detailedAnalysisPanel);
+    table.registerSelectionListener(selectionListener);
     return table;
   }
 }
