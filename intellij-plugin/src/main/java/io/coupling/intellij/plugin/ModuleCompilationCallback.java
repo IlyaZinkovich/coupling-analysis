@@ -11,20 +11,24 @@ public class ModuleCompilationCallback implements Consumer<ModuleOutputPath> {
   private static final String PROJECT_CLASSES_DIRECTORY = "io/coupling";
 
   private final ToolWindow toolWindow;
+  private final AnalysedClassesTableFactory factory;
 
-  ModuleCompilationCallback(final ToolWindow toolWindow) {
+  ModuleCompilationCallback(final ToolWindow toolWindow,
+      final AnalysedClassesTableFactory factory) {
     this.toolWindow = toolWindow;
+    this.factory = factory;
   }
 
   @Override
   public void accept(final ModuleOutputPath path) {
-    final AnalysedClassesPanel analysedClassesPanel = new AnalysedClassesPanel(path.moduleName());
+    final String moduleName = path.moduleName();
+    final AnalysedClassesPanel analysedClassesPanel = new AnalysedClassesPanel(moduleName, factory);
     analysedClassesPanel.addTo(toolWindow);
-    final AnalysedClassesTableModel tableModel = analysedClassesPanel.getTableModel();
+    final AnalysedClassesTable table = analysedClassesPanel.getTable();
     final ProjectCouplingAnalyser analyser = new ProjectCouplingAnalyser(path.absolute());
     final List<AnalysedClass> analysedClasses = analyser.analyse();
     analysedClasses.stream()
         .filter(analysedClass -> analysedClass.className().startsWith(PROJECT_CLASSES_DIRECTORY))
-        .forEach(tableModel::add);
+        .forEach(table::add);
   }
 }
