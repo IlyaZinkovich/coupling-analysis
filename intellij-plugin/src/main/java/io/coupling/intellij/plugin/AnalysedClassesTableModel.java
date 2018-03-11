@@ -3,7 +3,7 @@ package io.coupling.intellij.plugin;
 import io.coupling.domain.core.AnalysedClass;
 import javax.swing.table.DefaultTableModel;
 
-public class AnalysedClassesTableModel extends DefaultTableModel {
+class AnalysedClassesTableModel extends DefaultTableModel {
 
   private static final Object[] COLUMN_NAMES = {"Class", "In", "Out"};
   private static final int INITIAL_ROW_COUNT = 0;
@@ -16,11 +16,16 @@ public class AnalysedClassesTableModel extends DefaultTableModel {
     super(COLUMN_NAMES, INITIAL_ROW_COUNT);
   }
 
-  public void add(final AnalysedClass analysedClass) {
+  void add(final AnalysedClass analysedClass) {
     final String className = analysedClass.className().replace(DIRECTORY_SYNTAX, PACKAGE_SYNTAX);
     final int inboundCoupling = analysedClass.afferentCoupling();
     final int outboundCoupling = analysedClass.efferentCoupling();
     addRow(new Object[]{className, inboundCoupling, outboundCoupling});
+  }
+
+  String className(final int selectedRow) {
+    final String classNameView = (String) getValueAt(selectedRow, CLASS_NAME_COLUMN);
+    return classNameView.replace(PACKAGE_SYNTAX, DIRECTORY_SYNTAX);
   }
 
   @Override
@@ -40,10 +45,5 @@ public class AnalysedClassesTableModel extends DefaultTableModel {
   @Override
   public boolean isCellEditable(final int row, final int column) {
     return NOT_EDITABLE;
-  }
-
-  public String className(final int selectedRow) {
-    final String classNameView = (String) getValueAt(selectedRow, CLASS_NAME_COLUMN);
-    return classNameView.replace(PACKAGE_SYNTAX, DIRECTORY_SYNTAX);
   }
 }

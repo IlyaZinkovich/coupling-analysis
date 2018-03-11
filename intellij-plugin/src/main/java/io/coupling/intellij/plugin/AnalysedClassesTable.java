@@ -15,12 +15,12 @@ class AnalysedClassesTable extends JTable {
     this.cache = cache;
   }
 
-  public void add(final AnalysedClass analysedClass) {
+  void add(final AnalysedClass analysedClass) {
     cache.put(analysedClass);
     tableModel.add(analysedClass);
   }
 
-  public void registerSelectionListener() {
+  void registerSelectionListener() {
     this.getSelectionModel().addListSelectionListener(e -> listSelectionListener());
   }
 

@@ -4,7 +4,7 @@ import static javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS;
 
 import java.util.HashMap;
 
-public class AnalysedClassesTableFactory {
+class AnalysedClassesTableFactory {
 
   private static final int PREFERRED_CLASS_COLUMN_WIDTH = 300;
   private static final int CLASS_COLUMN = 0;

@@ -5,20 +5,26 @@ import static java.awt.BorderLayout.WEST;
 
 import javax.swing.JPanel;
 
-public class AnalysedClassesPanel extends JPanel {
+class AnalysedClassesPanel extends JPanel {
 
   private final String name;
+  private AnalysedClassesTable table;
 
   AnalysedClassesPanel(final String name) {
     this.name = name;
   }
 
-  public void add(final AnalysedClassesTable table) {
+  void add(final AnalysedClassesTable table) {
     this.add(createScrollPane(table), WEST);
+    this.table = table;
   }
 
   @Override
   public String getName() {
     return name;
+  }
+
+  AnalysedClassesTable table() {
+    return table;
   }
 }

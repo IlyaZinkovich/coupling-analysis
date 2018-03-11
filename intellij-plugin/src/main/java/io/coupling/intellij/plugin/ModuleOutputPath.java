@@ -2,7 +2,7 @@ package io.coupling.intellij.plugin;
 
 import com.intellij.openapi.module.Module;
 
-public class ModuleOutputPath {
+class ModuleOutputPath {
 
   private static final char UNDERSCORE = '_';
 
@@ -21,11 +21,11 @@ public class ModuleOutputPath {
         '}';
   }
 
-  public String absolute() {
+  String absolute() {
     return absolutePath;
   }
 
-  public String moduleName() {
+  String moduleName() {
     final String name = module.getName();
     final int lastIndexOfUnderscore = name.lastIndexOf(UNDERSCORE);
     final int firstIndex = 0;

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class ProjectCompiler {
+class ProjectCompiler {
 
   private final CompilerManager compilerManager;
   private final Consumer<ModuleOutputPath> callback;
@@ -18,7 +18,7 @@ public class ProjectCompiler {
     this.callback = callback;
   }
 
-  public void compile() {
+  void compile() {
     compilerManager.rebuild(this::compilationResults);
   }
 
