@@ -1,7 +1,7 @@
 package io.coupling.intellij.plugin;
 
 import static com.intellij.ui.ScrollPaneFactory.createScrollPane;
-import static java.awt.BorderLayout.EAST;
+import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.WEST;
 
 import javax.swing.JPanel;
@@ -21,7 +21,7 @@ class AnalysedClassesPanel extends JPanel {
   }
 
   void add(final DetailedAnalysisPanel detailedAnalysisPanel) {
-    this.add(detailedAnalysisPanel, EAST);
+    this.add(detailedAnalysisPanel, CENTER);
   }
 
   @Override
